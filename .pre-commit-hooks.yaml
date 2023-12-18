@@ -26,6 +26,7 @@
     files: '(\.go$)|(\bgo\.mod$)'
     exclude: '(^|/)vendor/'
     language: 'script'
-    description: "Run 'cd $(mod_root); go test [$ARGS] ./...' for each module in the repo"
-    pass_filenames: false
+    description: "Run 'cd $(mod_root $FILE); go test [$ARGS] ./...' for each staged .go file"
+    pass_filenames: true
+    require_serial: true
 
