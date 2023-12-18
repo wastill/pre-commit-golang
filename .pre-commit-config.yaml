@@ -1,0 +1,4 @@
+repos:
+  - repo: https://github.com/wastill/pre-commit-golang.git
+    rev: main
+    hooks:
