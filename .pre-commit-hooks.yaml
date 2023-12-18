@@ -23,7 +23,7 @@
 -   id: go-unit-tests
     name: 'go-test-repo-mod'
     entry: go-unit-tests.sh
-    files: '(\.go$)|(\bgo\.mod$)'
+    files: '\.go$'
     exclude: '(^|/)vendor/'
     language: 'script'
     description: "Run 'cd $(mod_root $FILE); go test [$ARGS] ./...' for each staged .go file"
