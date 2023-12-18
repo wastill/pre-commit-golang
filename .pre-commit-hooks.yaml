@@ -11,10 +11,21 @@
     language: 'script'
     pass_filenames: false
     description: "Runs `golangci-lint`, requires https://github.com/golangci/golangci-lint"
+
+# ==============================================================================
+# go-test-repo-mod
+#   * Repo-Based
+#   * Recursive
+#   * Targets ALL folders with a go.mod file
+#   * Executes if any .go files modified
+#   * Executes if go.mod modified
+# ==============================================================================
 -   id: go-unit-tests
-    name: 'go-unit-tests.sh'
+    name: 'go-test-repo-mod'
     entry: go-unit-tests.sh
-    files: '\.go$'
+    files: '(\.go$)|(\bgo\.mod$)'
+    exclude: '(^|/)vendor/'
     language: 'script'
-    description: "Runs `go test`"
+    description: "Run 'cd $(mod_root); go test [$ARGS] ./...' for each module in the repo"
+    pass_filenames: false
 
