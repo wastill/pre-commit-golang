@@ -1,9 +1,3 @@
 #!/usr/bin/env bash
-
-fail() {
-  echo "unit tests failed"
-  exit 1
-}
-
-
-go test ./... || fail
+cmd=(golangci-lint run)
+. "$(dirname "${0}")/lib/cmd-mod.bash"

@@ -4,14 +4,23 @@
     files: '\.go$'
     language: 'script'
     description: "Runs `gofmt`, requires golang"
--   id: golangci-lint
-    name: 'golangci-lint'
+# ==============================================================================
+# golangci-lint-mod
+#   * Folder-Based
+#   * Recursive
+#   * Targets first parent folder with a go.mod file
+#   * Executes if any .go files modified
+#   * Executes if go.mod modified
+# ==============================================================================
+-   id: golangci-lint-mod
+    name: 'golangci-lint-mod'
     entry: golangci-lint.sh
-    types: [go]
+    files: '(\.go$)|(\bgo\.mod$)'
+    exclude: '(^|/)vendor/'
     language: 'script'
-    pass_filenames: false
-    description: "Runs `golangci-lint`, requires https://github.com/golangci/golangci-lint"
-
+    description: "Run 'cd $(mod_root $FILE); golangci-lint run [$ARGS] ./...' for each staged .go file"
+    pass_filenames: true
+    require_serial: true
 # ==============================================================================
 # go-test-repo-mod
 #   * Repo-Based
@@ -20,13 +29,12 @@
 #   * Executes if any .go files modified
 #   * Executes if go.mod modified
 # ==============================================================================
--   id: go-unit-tests
+-   id: go-test-repo-mod
     name: 'go-test-repo-mod'
-    entry: go-unit-tests.sh
-    files: '\.go$'
+    entry: go-test-repo-mod.sh
+    files: '(\.go$)|(\bgo\.mod$)'
     exclude: '(^|/)vendor/'
     language: 'script'
-    description: "Run 'cd $(mod_root $FILE); go test [$ARGS] ./...' for each staged .go file"
-    pass_filenames: true
-    require_serial: true
+    description: "Run 'cd $(mod_root); go test [$ARGS] ./...' for each module in the repo"
+    pass_filenames: false
 
