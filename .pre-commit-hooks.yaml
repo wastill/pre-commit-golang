@@ -11,7 +11,7 @@
     language: 'script'
     pass_filenames: false
     description: "Runs `golangci-lint`, requires https://github.com/golangci/golangci-lint"
--   id: go-unit-tests.sh
+-   id: go-unit-tests
     name: 'go-unit-tests.sh'
     entry: go-unit-tests.sh
     files: '\.go$'
